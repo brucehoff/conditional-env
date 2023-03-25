@@ -11,13 +11,13 @@ on:
 
 env:
   SIMPLE_ENV: some-env
-  CONTEXT: ${{ github.GITHUB_REF_NAME == 'prod' && 'prod' || 'dev' }}
+  CONTEXT: ${{ github.REF_NAME == 'prod' && 'prod' || 'dev' }}
   ROLE_TO_ASSUME: >
-    ${{ github.GITHUB_REF_NAME == 'prod' &&
+    ${{ github.REF_NAME == 'prod' &&
     '=arn:aws:iam::739768332450:role/sagebase-github-oidc-sage-ProviderRolegeniebpcinfr-18H4ACOLMLGAO' ||
     'arn:aws:iam::631692904429:role/sagebase-github-oidc-sage-ProviderRolegeniebpcinfr-1MC1H5DE711HO' }}
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-${{ github.REF }}
 
 jobs:
   a-job:
@@ -32,6 +32,6 @@ jobs:
           echo GITHUB_REF_NAME:  ${{ github.GITHUB_REF_NAME }}
           echo REF_NAME:  ${{ github.REF_NAME }}
           echo GITHUB_HEAD_REF:  ${{ github.GITHUB_HEAD_REF }}
-          echo ref:  ${{ github.ref }}
-          echo ROLE_TO_ASSUME: ${{env.SIMPLE_ENV}}
+          echo REF:  ${{ github.REF }}
+          echo ROLE_TO_ASSUME: ${{env.ROLE_TO_ASSUME}}
           
