@@ -20,19 +20,11 @@ env:
 concurrency: ci-${{ github.ref }}
 
 jobs:
-
-
   a-job:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: cat-env
-        with:
-          aws-region: us-east-1
-          role-to-assume: ${{env.ROLE_TO_ASSUME }}
-          role-session-name: GitHubActions-${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.run_id }}
-          role-duration-seconds: 1200
         run: cat ${{env.SIMPLE_ENV}}
